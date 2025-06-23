@@ -1,0 +1,64 @@
+title{
+    align-items: center;
+    color: aqua;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  justify-content: center; /* Centers the buttons horizontally within their row */
+  align-items: flex-start; /* Aligns items to the start of the cross-axis (top) if they have different heights (though with same size buttons, this might not be strictly necessary, but good practice) */
+  gap: 15px; /* Adds space between buttons, both horizontally and vertically */
+  max-width: 600px; /* Adjust this value based on your design for optimal wrapping */
+  margin: 0 auto; /* Centers the container on the page */
+  padding: 10px; /* Optional: Add some padding around the buttons inside the container */
+}
+
+.button {
+  /* Common button styles */
+  padding: 15px 25px; /* Adjust padding as needed for your desired button size */
+  border: 1px solid #007bff;
+  background-color: #f0f8ff;
+  color: #007bff;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none; /* In case it's an <a> tag styled as a button */
+  display: inline-flex; /* Use inline-flex to center text vertically if needed */
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+
+  /* Sizing for 3 buttons per row with equal size */
+  flex: 0 0 calc(33.33% - 10px); /* 3 buttons per row, considering gap */
+  /* Explanation of flex: 0 0 calc(...) */
+  /* 0: flex-grow (don't grow beyond initial size) */
+  /* 0: flex-shrink (don't shrink below initial size) */
+  /* calc(33.33% - 10px): flex-basis (initial size). */
+  /* - 33.33% ensures they try to take up 1/3 of the container width. */
+  /* - We subtract `10px` (which is `2/3 * gap` for 3 items in a row if gap is 15px, but simply `gap / (number of items - 1)` for direct calculation) to account for the `gap` property. */
+  /* - More simply, for `gap: 15px;`, the total gap between 3 items is `2 * 15px = 30px`. So each item gets `30px / 3 = 10px` deducted. */
+  width: 500px; /* Optional: Set a minimum width to prevent them from becoming too small on narrow screens */
+  height: 200px; /* Enforce a fixed height for all buttons */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Optional: To make them truly responsive and adjust column count */
+@media (max-width: 300px) {
+  .container {
+    max-width: 400px; /* Adjust for smaller screens */
+  }
+  .button {
+    flex: 0 0 calc(50% - 7.5px); /* On smaller screens, 2 buttons per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 300px; /* Even smaller screens */
+  }
+  .button {
+    flex: 0 0 100%; /* On very small screens, 1 button per row */
+  }
+}
+
+
